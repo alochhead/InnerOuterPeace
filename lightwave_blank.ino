@@ -1,6 +1,6 @@
 /* 
 Title: Inner Outer Peace
-This is a code logic for a breathing pattern light that is meant to use a wearble belt sensor that tracks data and then displays 
+This is a code logic for an arduino circuit that uses a wearble belt sensor to track data and then displays 
 the data in a progressive light pattern that resembles a wave. 
 
 Written by
@@ -21,10 +21,12 @@ void setup() {
 
   //This for loop sest up the light pins as an array of outpus 
   for(int i = 0; i < amountOfLights; i++){
+    
     lightPins[i] = i+2; 
     // Adding lights to the array, starting point is D2
     pinMode(i, OUTPUT);
     // Making them outputs to be read 
+    
   }
   //Testing: Serial.println(lightPins[amountOfLights]);
 
@@ -39,18 +41,21 @@ void loop() {
 
 // Read sensor data in the loop function so it updates continuously 
 int pressureValue = analogRead(sensorPin);
+
+// Contrain blocks out noise from the belt bend 
 pressureValue = constrain(pressureValue, 900, 1050);
 
 //Map the sensor data to the number of lights in the wave, starting from the bottom going up to top of wave 
-int waveLights = map(pressureValue, 0, 700, 0, amountOfLights);
+int waveLights = map(pressureValue, 0, 1010, 0, amountOfLights);
 
 //By walking through a loop that is the length of the lights, light up leds 1 by 1 reletive to the map 
 for(int i = 0; i < amountOfLights; i++){
+  
   if (i < waveLights){
-    digitalWrite(lightPins[i], HIGH); 
+    digitalWrite(lightPins[i], HIGH); //light up 
   }
   else{
-    digitalWrite(lightPins[i], LOW); 
+    digitalWrite(lightPins[i], LOW); //turn off
   }
 }
   // Print data 
