@@ -8,7 +8,7 @@ Written by
 Referenced content from:
   Nick Puckett and Kate Hartman DIGF - Creation and Computation 
   Arduino Docs Language Reference - https://docs.arduino.cc/language-reference
-  Arduino IDE Built in example ibrary - For loop iteration
+  Arduino IDE Built in example library - For loop iteration
 */
 
 int const sensorPin  = A0;
